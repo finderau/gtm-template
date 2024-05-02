@@ -6,6 +6,8 @@ Please follow these instructions when installing the tag, and consult with your 
 - When this tag is installed on your website via Google Tag Manager, conversion data will be sent to Finder.
 - You may need to update your website's privacy policy accordingly when installing this tag.
 
+Finder partners will need to install both a landing page tag and a conversion tag on their website, as per the following instructions:
+
 ## 1. Landing Page tag
 - Create a new tag in Google Tag Manager.
 - Under "Tag configuration", select "Discover more tag types in the Community Template Gallery" and then choose the **Finder Partner Tag**.
