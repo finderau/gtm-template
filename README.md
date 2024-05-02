@@ -2,7 +2,9 @@
 
 Share conversion data with Finder to enhance your campaign results and partnership effectiveness.
 
-Please follow these instructions when installing the tag, and consult with your Finder Client Services and AdOps team.
+Please follow these instructions when installing the tag, and consult with your Finder Client Services and AdOps team. Note that:
+- When this tag is installed on your website via Google Tag Manager, conversion data will be sent to Finder.
+- You may need to update your website's privacy policy accordingly when installing this tag.
 
 ## 1. Landing Page tag
 Create a new tag in Google Tag Manager using the Finder Partner Tag template, choosing "Landing Page" as the Tag Type. This tag needs to be installed either sitewide, or on all pages that are being used as landing pages for your partnership with Finder.
