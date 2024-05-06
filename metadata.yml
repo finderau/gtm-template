@@ -1,0 +1,5 @@
+homepage: "https://www.finder.com.au"
+documentation: "https://github.com/finderau/gtm_template"
+versions:
+  - sha: xxx
+    changeNotes: Initial release.
