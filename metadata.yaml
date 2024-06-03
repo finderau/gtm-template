@@ -1,5 +1,9 @@
 homepage: "https://www.finder.com.au"
 documentation: "https://github.com/finderau/gtm_template"
 versions:
+  # Latest version
+  - sha: c8c3c5673ecd05c1d971fad4862c0fff54eed034
+    changeNotes: Updated logo.
+  # Older versions
   - sha: fe0318840dc227da90dd0d4370d412b710d08987
     changeNotes: Initial release.
