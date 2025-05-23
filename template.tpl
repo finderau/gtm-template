@@ -11,7 +11,7 @@ ___INFO___
 {
   "type": "TAG",
   "id": "cvt_temp_public_id",
-  "version": 1,
+  "version": 2,
   "securityGroups": [],
   "displayName": "Finder Partner Tag",
   "categories": ["AFFILIATE_MARKETING", "CONVERSIONS", "ATTRIBUTION"],
@@ -158,7 +158,7 @@ if (tag_type == "conv") {
   const fdclid = getCookieValues('fdclid');
   
   // Construct URL
-  var params = '?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
+  var params = '?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_ref=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
   const url = 'https://t.finder.com/aff_l' + params;
   
   // Fire conversion pixel
@@ -365,6 +365,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 03/06/2024, 12:59:05
+Created on 23/05/2025, 10:28:00
 
 
