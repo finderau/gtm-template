@@ -157,9 +157,14 @@ if (tag_type == "conv") {
   // Read cookie value
   const fdclid = getCookieValues('fdclid');
   
-  // Construct URL
-  var params = '?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_ref=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
-  const url = 'https://t.finder.com/aff_l' + params;
+  // Contsruct URL
+  if (goal_id == 0 || goal_id == "") {
+    var params = 'aff_l?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
+  } else {
+    var params = 'aff_goal?a=lsr&offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
+  }
+  
+  const url = 'https://t.finder.com/' + params;
   
   // Fire conversion pixel
   sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
@@ -365,6 +370,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 23/05/2025, 10:28:00
+Created on 27/05/2025, 21:11:18
 
 
