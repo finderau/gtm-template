@@ -130,6 +130,20 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ]
+  },
+  {
+    "type": "TEXT",
+    "name": "product_name",
+    "displayName": "Product Name (Optional)",
+    "simpleValueType": true,
+    "canBeEmptyString": true,
+    "enablingConditions": [
+      {
+        "paramName": "tag_type",
+        "paramValue": "conv",
+        "type": "EQUALS"
+      }
+    ]
   }
 ]
 
@@ -150,6 +164,7 @@ const goal_id = data.goal_id;
 const value = data.value;
 const conv_id = data.conv_id;
 const comm = data.comm;
+const prod_name = data.product_name;
 
 if (tag_type == "conv") {
   // Conversion tag
@@ -161,7 +176,7 @@ if (tag_type == "conv") {
   if (goal_id == 0 || goal_id == "") {
     var params = 'aff_l?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
   } else {
-    var params = 'aff_goal?a=lsr&offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
+    var params = 'aff_goal?a=lsr&offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
   }
   
   const url = 'https://t.finder.com/' + params;
@@ -370,6 +385,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 27/05/2025, 21:11:18
+Created on 18/12/2025, 09:50:16
 
 
