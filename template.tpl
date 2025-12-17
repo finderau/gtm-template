@@ -174,9 +174,9 @@ if (tag_type == "conv") {
   
   // Contsruct URL
   if (goal_id == 0 || goal_id == "") {
-    var params = 'aff_l?offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id);
+    var params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
   } else {
-    var params = 'aff_goal?a=lsr&offer_id=' + offer_id + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
+    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
   }
   
   const url = 'https://t.finder.com/' + params;
@@ -385,6 +385,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 18/12/2025, 09:50:16
+Created on 18/12/2025, 10:02:03
 
 
