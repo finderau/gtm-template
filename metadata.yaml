@@ -2,9 +2,11 @@ homepage: "https://www.finder.com.au"
 documentation: "https://github.com/finderau/gtm_template"
 versions:
   # Latest version
+  - sha: 9fea3986ea75e1cb24aa72d681bf227724bbccba
+    changeNotes: Added product name field.
+  # Older versions
   - sha: 39a662297df7a7a6328fe2cf26689367becde646
     changeNotes: Updated goal postback URL.
-  # Older versions
   - sha: 01bfecdad6983f5f668acd74f4eec0e528f6a446
     changeNotes: Updated Goal ID tracking.
   - sha: c8c3c5673ecd05c1d971fad4862c0fff54eed034
