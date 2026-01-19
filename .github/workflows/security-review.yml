@@ -1,0 +1,17 @@
+name: Security Review
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: write
+  pull-requests: write
+  security-events: write
+
+jobs:
+  security:
+    uses: finderau/code-defender/.github/workflows/security-review.yml@master
+    secrets: inherit
