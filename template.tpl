@@ -1,4 +1,4 @@
-﻿___TERMS_OF_SERVICE___
+___TERMS_OF_SERVICE___
 
 By creating or modifying this file you agree to Google Tag Manager's Community
 Template Gallery Developer Terms of Service available at
@@ -173,8 +173,8 @@ if (tag_type == "conv") {
   const fdclid = getCookieValues('fdclid');
   
   // Contsruct URL
-  if (goal_id == 0 || goal_id == "") {
-    var params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
+  if (goal_id == "" && value == "" && conv_id == "" && comm == "" && prod_name == "") {
+    var params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid);
   } else {
     var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
   }
@@ -385,6 +385,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 18/12/2025, 10:02:03
+Created on 26/02/2026, 16:50:16
 
 
