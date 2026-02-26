@@ -82,10 +82,26 @@ ___TEMPLATE_PARAMETERS___
     ],
     "valueValidators": [
       {
-        "type": "REGEX",
-        "args": [
-          "[0-9]*"
-        ]
+        "type": "POSITIVE_NUMBER"
+      }
+    ]
+  },
+  {
+    "type": "TEXT",
+    "name": "goal_name",
+    "displayName": "Goal Name (Optional)",
+    "simpleValueType": true,
+    "canBeEmptyString": true,
+    "enablingConditions": [
+      {
+        "paramName": "tag_type",
+        "paramValue": "conv",
+        "type": "EQUALS"
+      }
+    ],
+    "valueValidators": [
+      {
+        "type": "NON_NEGATIVE_NUMBER"
       }
     ]
   },
@@ -161,6 +177,7 @@ const encodeUriComponent = require('encodeUriComponent');
 const tag_type = data.tag_type;
 const offer_id = data.offer_id;
 const goal_id = data.goal_id;
+const goal_name = data.goal_name;
 const value = data.value;
 const conv_id = data.conv_id;
 const comm = data.comm;
@@ -173,16 +190,36 @@ if (tag_type == "conv") {
   const fdclid = getCookieValues('fdclid');
   
   // Contsruct URL
-  if (goal_id == "" && value == "" && conv_id == "" && comm == "" && prod_name == "") {
+  if (goal_name.length == 0 && goal_id.length == 0) {
     var params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid);
+  } else if (goal_name.length > 0) {
+    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_name=' + encodeUriComponent(goal_name);
   } else {
-    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id) + '&sale_amount=' + encodeUriComponent(value) + '&revenue=' + encodeUriComponent(comm) + '&adv_sub=' + encodeUriComponent(conv_id) + '&adv_sub5=' + encodeUriComponent(prod_name);
+    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id);
+  }
+  
+  if (value.length > 0) {
+    params += '&amount=' + encodeUriComponent(value);
+  }
+  
+  if (conv_id.length > 0) {
+    params += '&adv_sub=' + encodeUriComponent(conv_id);
+  }
+  
+  if (comm.length > 0) {
+    params += '&revenue=' + encodeUriComponent(comm);
+  }
+  
+  if (prod_name.length > 0) {
+    params += '&adv_sub5=' + encodeUriComponent(prod_name);
   }
   
   const url = 'https://t.finder.com/' + params;
   
   // Fire conversion pixel
-  sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure);
+  if (fdclid != null && fdclid.length > 0) {
+   sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure); 
+  }
   
 } else if (tag_type == "lp") {
   // Landing page tag
@@ -385,6 +422,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 26/02/2026, 16:50:16
+Created on 26/02/2026, 21:24:14
 
 
