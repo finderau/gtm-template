@@ -2,9 +2,11 @@ homepage: "https://www.finder.com.au"
 documentation: "https://github.com/finderau/gtm_template"
 versions:
   # Latest version
+  - sha: 2c4b106c790152483056f306485ceb680f680b19
+    changeNotes: Updated conversion URL format.
+  # Older versions
   - sha: 7919a345b4fa701ee5eb7f0349a6fb7fcd16f015
     changeNotes: Updated conversion URL parameters for custom conversion ID.
-  # Older versions
   - sha: cfbd5722dd3001eb0d0ddbcbe38924de44e8a80a
     changeNotes: Updated conversion URL parameters.
   - sha: 9fea3986ea75e1cb24aa72d681bf227724bbccba
