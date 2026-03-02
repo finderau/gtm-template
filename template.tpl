@@ -14,7 +14,6 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Finder Partner Tag",
-  "categories": ["AFFILIATE_MARKETING", "CONVERSIONS", "ATTRIBUTION"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -80,11 +79,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ],
-    "valueValidators": [
-      {
-        "type": "POSITIVE_NUMBER"
-      }
-    ]
+    "valueValidators": []
   },
   {
     "type": "TEXT",
@@ -99,11 +94,7 @@ ___TEMPLATE_PARAMETERS___
         "type": "EQUALS"
       }
     ],
-    "valueValidators": [
-      {
-        "type": "NON_NEGATIVE_NUMBER"
-      }
-    ]
+    "valueValidators": []
   },
   {
     "type": "TEXT",
@@ -422,6 +413,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 26/02/2026, 21:24:14
+Created on 02/03/2026, 15:07:37
 
 
