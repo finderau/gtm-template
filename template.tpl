@@ -78,8 +78,7 @@ ___TEMPLATE_PARAMETERS___
         "paramValue": "conv",
         "type": "EQUALS"
       }
-    ],
-    "valueValidators": []
+    ]
   },
   {
     "type": "TEXT",
@@ -93,8 +92,7 @@ ___TEMPLATE_PARAMETERS___
         "paramValue": "conv",
         "type": "EQUALS"
       }
-    ],
-    "valueValidators": []
+    ]
   },
   {
     "type": "TEXT",
@@ -166,16 +164,16 @@ const encodeUriComponent = require('encodeUriComponent');
 
 // Tag template fields
 const tag_type = data.tag_type;
-const offer_id = data.offer_id;
-const goal_id = data.goal_id;
-const goal_name = data.goal_name;
-const value = data.value;
-const conv_id = data.conv_id;
-const comm = data.comm;
-const prod_name = data.product_name;
 
 if (tag_type == "conv") {
   // Conversion tag
+  const offer_id = data.offer_id;
+  const goal_id = data.goal_id;
+  const goal_name = data.goal_name;
+  const value = data.value;
+  const conv_id = data.conv_id;
+  const comm = data.comm;
+  const prod_name = data.product_name;
   
   // Read cookie value
   const fdclid = getCookieValues('fdclid');
@@ -413,6 +411,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 02/03/2026, 15:07:37
+Created on 08/03/2026, 20:40:01
 
 
