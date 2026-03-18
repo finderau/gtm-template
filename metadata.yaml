@@ -5,7 +5,7 @@ versions:
   - sha: 604b04389e2acffb6234559556933fabc81d4aec
     changeNotes: Updated handling of conversion variables.
   # Older versions
-   - sha: cc38c0206ed2e2c293e8edffb5da95c4c0359359
+  - sha: cc38c0206ed2e2c293e8edffb5da95c4c0359359
     changeNotes: Updated goal field validation rules.
   - sha: 2c4b106c790152483056f306485ceb680f680b19
     changeNotes: Updated conversion URL format.
