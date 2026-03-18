@@ -14,6 +14,7 @@ ___INFO___
   "version": 1,
   "securityGroups": [],
   "displayName": "Finder Partner Tag",
+  "categories": ["AFFILIATE_MARKETING", "ATTRIBUTION", "CONVERSIONS"],
   "brand": {
     "id": "brand_dummy",
     "displayName": "",
@@ -187,19 +188,19 @@ if (tag_type == "conv") {
     var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id);
   }
   
-  if (value.length > 0) {
+  if (value.toString().length > 0) {
     params += '&amount=' + encodeUriComponent(value);
   }
   
-  if (conv_id.length > 0) {
+  if (conv_id.toString().length > 0) {
     params += '&adv_sub=' + encodeUriComponent(conv_id);
   }
   
-  if (comm.length > 0) {
+  if (comm.toString().length > 0) {
     params += '&revenue=' + encodeUriComponent(comm);
   }
   
-  if (prod_name.length > 0) {
+  if (prod_name.toString().length > 0) {
     params += '&adv_sub5=' + encodeUriComponent(prod_name);
   }
   
@@ -411,6 +412,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 08/03/2026, 20:40:01
+Created on 18/03/2026, 21:32:13
 
 
