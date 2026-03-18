@@ -2,9 +2,11 @@ homepage: "https://www.finder.com.au"
 documentation: "https://github.com/finderau/gtm_template"
 versions:
   # Latest version
+  - sha: e9f941cdc285af807435bc489a475c2b0a713191
+    changeNotes: Updated handling of optional conversion variables.
+  # Older versions
   - sha: 604b04389e2acffb6234559556933fabc81d4aec
     changeNotes: Updated handling of conversion variables.
-  # Older versions
   - sha: cc38c0206ed2e2c293e8edffb5da95c4c0359359
     changeNotes: Updated goal field validation rules.
   - sha: 2c4b106c790152483056f306485ceb680f680b19
