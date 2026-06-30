@@ -158,10 +158,11 @@ ___SANDBOXED_JS_FOR_WEB_TEMPLATE___
 
 // Require APIs
 const sendPixel = require('sendPixel');
-const getCookieValues = require('getCookieValues');
 const getQueryParameters = require('getQueryParameters');
-const setCookie = require('setCookie');
+const localStorage = require('localStorage');
 const encodeUriComponent = require('encodeUriComponent');
+const setCookie = require('setCookie');
+const getCookieValues = require('getCookieValues');
 
 // Tag template fields
 const tag_type = data.tag_type;
@@ -176,40 +177,49 @@ if (tag_type == "conv") {
   const comm = data.comm;
   const prod_name = data.product_name;
   
-  // Read cookie value
-  const fdclid = getCookieValues('fdclid');
+  // Read local storage value (returns string or undefined)
+  const fdclid = localStorage.getItem('fdclid') || getCookieValues('fdclid');
+
+// Explicitly check that fdclid exists and isn't an empty string
+if (fdclid) {
   
-  // Contsruct URL
-  if (goal_name.length == 0 && goal_id.length == 0) {
-    var params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid);
-  } else if (goal_name.length > 0) {
-    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_name=' + encodeUriComponent(goal_name);
+  var params = '';
+  
+  // Construct Base URL based on Goal configuration
+  if (!goal_name && !goal_id) {
+    params = 'aff_l?offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid);
+  } else if (goal_name) {
+    params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_name=' + encodeUriComponent(goal_name);
   } else {
-    var params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id);
+    params = 'aff_goal?a=lsr&offer_id=' + encodeUriComponent(offer_id) + '&transaction_id=' + encodeUriComponent(fdclid) + '&goal_id=' + encodeUriComponent(goal_id);
   }
   
-  if (value.toString().length > 0) {
+  // Safely append optional parameters without using .toString() on undefined values
+  if (value !== undefined && value !== null && value !== '') {
     params += '&amount=' + encodeUriComponent(value);
   }
   
-  if (conv_id.toString().length > 0) {
+  if (conv_id !== undefined && conv_id !== null && conv_id !== '') {
     params += '&adv_sub=' + encodeUriComponent(conv_id);
   }
   
-  if (comm.toString().length > 0) {
+  if (comm !== undefined && comm !== null && comm !== '') {
     params += '&revenue=' + encodeUriComponent(comm);
   }
   
-  if (prod_name.toString().length > 0) {
+  if (prod_name !== undefined && prod_name !== null && prod_name !== '') {
     params += '&adv_sub5=' + encodeUriComponent(prod_name);
   }
   
   const url = 'https://t.finder.com/' + params;
   
-  // Fire conversion pixel
-  if (fdclid != null && fdclid.length > 0) {
-   sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure); 
-  }
+  // Fire conversion pixel and signal GTM execution status
+  sendPixel(url, data.gtmOnSuccess, data.gtmOnFailure); 
+  
+} else {
+  // If no Click ID exists, fail gracefully so GTM doesn't hang
+  data.gtmOnFailure();
+}
   
 } else if (tag_type == "lp") {
   // Landing page tag
@@ -217,8 +227,10 @@ if (tag_type == "conv") {
   // Read Click ID from URL parameters
   const fdclid = getQueryParameters('fdclid');
   
-  // Set first party cookie value
-  if (fdclid != null && fdclid.length > 0) {
+  // Set local storage value
+  if (fdclid) {
+    localStorage.setItem('fdclid', fdclid, {type: 'session'});
+    
     var options = {
       'domain': 'auto',
       'path': '/',
@@ -275,6 +287,87 @@ ___WEB_PERMISSIONS___
   {
     "instance": {
       "key": {
+        "publicId": "get_url",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "urlParts",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        },
+        {
+          "key": "queriesAllowed",
+          "value": {
+            "type": 1,
+            "string": "any"
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
+        "publicId": "access_local_storage",
+        "versionId": "1"
+      },
+      "param": [
+        {
+          "key": "keys",
+          "value": {
+            "type": 2,
+            "listItem": [
+              {
+                "type": 3,
+                "mapKey": [
+                  {
+                    "type": 1,
+                    "string": "key"
+                  },
+                  {
+                    "type": 1,
+                    "string": "read"
+                  },
+                  {
+                    "type": 1,
+                    "string": "write"
+                  }
+                ],
+                "mapValue": [
+                  {
+                    "type": 1,
+                    "string": "fdclid"
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  },
+                  {
+                    "type": 8,
+                    "boolean": true
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "clientAnnotations": {
+      "isEditedByUser": true
+    },
+    "isRequired": true
+  },
+  {
+    "instance": {
+      "key": {
         "publicId": "get_cookies",
         "versionId": "1"
       },
@@ -296,34 +389,6 @@ ___WEB_PERMISSIONS___
                 "string": "fdclid"
               }
             ]
-          }
-        }
-      ]
-    },
-    "clientAnnotations": {
-      "isEditedByUser": true
-    },
-    "isRequired": true
-  },
-  {
-    "instance": {
-      "key": {
-        "publicId": "get_url",
-        "versionId": "1"
-      },
-      "param": [
-        {
-          "key": "urlParts",
-          "value": {
-            "type": 1,
-            "string": "any"
-          }
-        },
-        {
-          "key": "queriesAllowed",
-          "value": {
-            "type": 1,
-            "string": "any"
           }
         }
       ]
@@ -384,7 +449,7 @@ ___WEB_PERMISSIONS___
                   },
                   {
                     "type": 1,
-                    "string": "any"
+                    "string": "secure"
                   },
                   {
                     "type": 1,
@@ -412,6 +477,6 @@ scenarios: []
 
 ___NOTES___
 
-Created on 18/03/2026, 21:32:13
+Created on 08/03/2026, 20:40:01
 
 
