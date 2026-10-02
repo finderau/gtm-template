@@ -17,6 +17,6 @@ Finder partners will need to install both a landing page tag and a conversion ta
 ## 2. Conversion tag
 - Create a new tag in Google Tag Manager.
 - Under "Tag configuration", select "Discover more tag types in the Community Template Gallery" and then choose the **Finder Partner Tag**.
-- Choose "Conversion" as the Tag Type. Enter your Offer ID as provided by your Finder Client Services or AdOps team.
+- Choose "Conversion" as the Tag Type. Enter your Offer ID as provided by your Finder Client Services or AdOps team. If you are passing other values - Goal Id, Goal Name - please ask Finder AdOps for these values. If you are passing Product Name, please communicate the expected values to Finder AdOps.
 - Under "Triggering", choose a trigger so that the tag will fire when your main conversion event occurs (for example, a sale, a lead or an application).
 - Your Finder team will inform you if any of the other optional fields for the conversion tag need to be populated.
